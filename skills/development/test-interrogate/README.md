@@ -51,3 +51,5 @@ After your feature is ready and PR is up:
 ```
 
 Or just tell Claude: "interrogate me on tests for this PR"
+
+> **Note:** This skill doesn't just cover your new code. It also inspects the surrounding codebase and surfaces existing test gaps in code your changes touch or depend on.
