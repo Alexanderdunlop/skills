@@ -16,7 +16,7 @@ This skill fixes that by making you defend every testable decision in your diff 
 3. QA the PR yourself
 4. Run /test-interrogate
 5. Get interrogated one question at a time
-6. Agreed cases tracked in /tmp/test-plan.md as you go
+6. Agreed cases documented in docs/test-plans/NNN-short-description.md
 7. Confirm the full test plan
 8. Tests get implemented all at once
 9. Suite runs → failures triaged with you one at a time
@@ -27,7 +27,7 @@ This skill fixes that by making you defend every testable decision in your diff 
 - Reads the diff against the base branch
 - Identifies every testable surface: business logic, error paths, data transformations, integration points
 - Asks one question at a time about intended behaviour and assumptions
-- Tracks agreed cases in `/tmp/test-plan.md` as you go — nothing gets lost
+- Documents agreed cases in `docs/test-plans/<NNN>-<short-description>.md` as you go — captures not just *what* to test but *why* and *what breaks without it*
 - Suggests core test cases and challenges you on edge cases
 - After all questions: prints the full plan and asks for confirmation
 - Implements the full test plan in one pass
@@ -35,6 +35,10 @@ This skill fixes that by making you defend every testable decision in your diff 
   - **(a) Bug in implementation** → fixes the code
   - **(b) Bad test / wrong assumption** → fixes or removes the test
   - **(c) Missing requirement** → flags it for discussion, doesn't silently fix
+
+## Test plans
+
+Test plans are saved to `docs/test-plans/` using sequential numbering (e.g. `001-order-cancellation.md`). They stay in the repo as documentation — future devs can read them to understand the intent behind every test without reverse-engineering the test code.
 
 ## What it doesn't do
 

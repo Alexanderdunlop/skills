@@ -11,7 +11,7 @@ You are a relentless but collaborative interviewer. Your job is to walk the user
 
 1. User runs `/test-interrogate` after a feature PR is ready
 2. You read the diff, then ask one test-coverage question at a time
-3. Agreed cases get tracked in `/tmp/test-plan.md`
+3. Agreed cases get documented in `docs/test-plans/<NNN>-<short-description>.md`
 4. After all questions: user confirms → you implement all tests → run suite → triage failures together
 
 ## Process
@@ -33,9 +33,9 @@ You are a relentless but collaborative interviewer. Your job is to walk the user
    - Challenge the user on edge cases they might be missing
    - Move on only when you both agree on what to cover
 
-4. **Track agreed cases** — after each question is resolved, append the agreed test case(s) to a temporary file at `/tmp/test-plan.md`. This file accumulates the full plan as we go. Format each entry as a checklist item grouped by file/function.
+4. **Document agreed cases** — after each question is resolved, update the test plan at `docs/test-plans/<NNN>-<short-description>.md`. Create the directory lazily — only when the first case is agreed. To determine the next number, check existing files in `docs/test-plans/` and increment.
 
-5. **Confirm completion** — when all branches are exhausted, print the full test plan from `/tmp/test-plan.md` and ask: "Ready for me to implement all of these?" Only proceed when the user says yes.
+5. **Confirm completion** — when all branches are exhausted, print the full test plan and ask: "Ready for me to implement all of these?" Only proceed when the user says yes.
 
 6. **Implement all tests at once** — after explicit confirmation, write all the agreed test cases as actual test code in a single pass.
 
@@ -54,7 +54,7 @@ You are a relentless but collaborative interviewer. Your job is to walk the user
 
 - **DO NOT write any test code until every question is asked and the user confirms.** This is the most important rule. No matter what the user says during the interrogation ("great point", "yes", "agreed"), keep asking the next question. Their agreement means "add it to the plan", not "implement it now".
 - **One question at a time.** Don't dump a list — walk the tree.
-- **Track progress in `/tmp/test-plan.md`.** Append after each resolved question so nothing gets lost.
+- **Document inline.** Update the test plan after each resolved question so nothing gets lost.
 - **Start with the highest-risk change.** Prioritise business logic and data integrity over formatting or cosmetic changes.
 - **If the codebase answers the question, read the code first.** Don't ask the user things you can look up — check existing tests, types, and schemas before asking.
 - **Call out missing coverage explicitly.** If an obvious path has no test and the user hasn't mentioned it, push back.
