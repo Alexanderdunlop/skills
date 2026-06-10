@@ -93,6 +93,16 @@ The working skills are NOT generic how-to documents. They share a shape:
 4. **Every line must survive the would-have-anyway test.** If Claude would do it without being told, it's filler. Cut it or sharpen it with a real specific.
 5. **Length follows specificity.** Most skills land 50-150 lines. Don't pad; don't cut the examples and the why to hit a number.
 
+## Principle: For skills that end in a recommendation, name what would flip the call
+
+When the right answer depends on something only the user knows — future plans, expected scale, team direction, roadmap — make Claude state that dependency plainly and frame the recommendation conditionally, not guess it. The failure this prevents: Claude picks the "more flexible" option unprompted, builds it, and the user says "I only had two cases, I didn't need this."
+
+**Good:** "Recommendation: A if more chain shapes are coming, B if the current set is stable."
+
+**Bad:** "Recommendation: B (pluggable chains) — more flexible." (Confidently guesses the roadmap.)
+
+**The governor:** if Claude can confidently choose without user-only knowledge, it should. "Name the dependency" exists to keep recommendations honest, not to outsource every call. A skill that punts every decision back to the user is its own failure mode.
+
 ## Template
 
 ```markdown
