@@ -26,6 +26,16 @@ gh pr list --state merged --limit 50 --json number --jq '.[].number' \
 
 Group the comments by theme. Whatever humans still comment on is the backlog.
 
+No correction log is fine. Search the Claude Code session history for this repo instead:
+
+```bash
+dir=~/.claude/projects/$(pwd | tr '/.' '--')
+jq -r 'select(.type == "user" and (.message.content | type) == "string") | .message.content' "$dir"/*.jsonl \
+  | grep -iE "^(no|don.t|stop|wrong|actually)\b|instead|not what i"
+```
+
+If there is no history either, say so under Step 2 and move on.
+
 **3. Find the nuance.**
 An API that needs judgment on every use leads to slop. React's `useEffect` is the classic case.
 - Ask: Which APIs need judgment? In which files do they cluster? Which files take repeated fixes?
@@ -112,16 +122,35 @@ Where to look:
 
 ## Report template
 
+List all 12 steps, in order. Never leave a step out.
+
 ```md
+---
+repo: <owner/name>
+date: YYYY-MM-DD
+skill: slop-audit
+status: open
+---
+
 # Slop audit YYYY-MM-DD
 
 | Signal | Last | Now |
 |---|---|---|
 
-## Findings
-### Step N: <name>
+## Steps
+
+### Step 1: Set a baseline
 Evidence: ...
 Rung: codebase | static analysis | verification | prose
+Check: <the change, in package.json scripts, ESLint config, test files or CI workflows>
+
+### Step 2: Collect every correction
+No finding. <one line of evidence>
+
+### Step 3: Find the nuance
+Skipped. <why it could not be checked>
+
+... through Step 12.
 
 ## Verification inventory
 | Technique | Status | Evidence |
