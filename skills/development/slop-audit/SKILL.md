@@ -28,7 +28,7 @@ Each finding gets the strongest rung that can hold it. A weaker rung becomes the
 ### Phase 1: Probe
 
 - [ ] Read CLAUDE.md, AGENTS.md, lint config, CI workflows, and the test setup.
-- [ ] Find a correction log, if one exists. Pass it as `CORRECTIONS=<file>`.
+- [ ] Find a correction log, if one exists. Pass it as `CORRECTIONS=<file>`. If there is none, search the Claude Code session history for this repo (see Step 2 in [REFERENCE.md](REFERENCE.md)). If that is empty too, say so under Step 2 and move on.
 - [ ] Add stack-specific nuance APIs with `NUANCE='api1|api2'`.
 - [ ] Run the probe script. Keep the output.
 - [ ] Find the last report in `docs/slop-audit/`. You compare against it.
@@ -39,7 +39,7 @@ Follow [REFERENCE.md](REFERENCE.md). For each step, record:
 
 - the audit question,
 - the evidence: a number, a file list or a quote from config,
-- the rung that could hold the finding, or "no finding".
+- the rung that could hold the finding, or "No finding", or "Skipped" and why.
 
 Read code before you claim a finding. A count is a lead, not a verdict. Open the top hotspot files and confirm the pattern.
 
@@ -49,12 +49,13 @@ Fill the inventory table in [REFERENCE.md](REFERENCE.md). Mark each technique `h
 
 ### Phase 4: Report
 
-Write `docs/slop-audit/YYYY-MM-DD.md` with:
+Write `docs/slop-audit/YYYY-MM-DD.md` from the template in [REFERENCE.md](REFERENCE.md), with:
 
-1. A numbers table, with last report's numbers next to this one's.
-2. One section per step that has a finding: evidence, then the proposed rung.
-3. The verification inventory.
-4. A ranked shortlist of at most 5 findings. Rank by fix churn first, then correction count, then cost.
+1. Frontmatter: `repo`, `date`, `skill: slop-audit`, `status: open`.
+2. A numbers table, with last report's numbers next to this one's.
+3. All 12 steps, in order. A finding gets evidence, then the proposed rung and check. A step with nothing to report says "No finding" plus one line of evidence. A step you could not check says "Skipped" and why. Never leave a step out.
+4. The verification inventory.
+5. A ranked shortlist of at most 5 findings. Rank by fix churn first, then correction count, then cost.
 
 Then ask the user which one finding to act on. Offer to open one ticket for it.
 
@@ -62,6 +63,7 @@ Then ask the user which one finding to act on. Offer to open one ticket for it.
 
 - **Audit, do not fix.** No code changes in this skill. The output is the report.
 - **Evidence for every claim.** A number, a path or a quote. No "probably".
+- **Checks use the repo's standard files.** Point every fix at `package.json` scripts, the ESLint config, test files or CI workflows. Never at a third-party tool's config folder.
 - **Strongest rung wins.** Never propose prose when a type or a lint rule can hold the lesson.
 - **One ticket per run.** A list of 20 fixes gets none done.
 - **Clean but unenforced comes first.** A boundary that holds today and has no check is the cheapest thing to lock.
