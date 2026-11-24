@@ -8,3 +8,4 @@ My everyday development skills.
 - **[teach-the-mechanism](./teach-the-mechanism/SKILL.md)** — Explain the user-visible flow and map it to the mechanism underneath before writing code on an unfamiliar standard, protocol, or architecture.
 - **[align-user-journey](./align-user-journey/SKILL.md)** — State the user-experience a feature produces and get sign-off on the journey before writing any code.
 - **[slop-audit](./slop-audit/SKILL.md)** — Audit a codebase for where agents write slop, and name the strongest check to stop each one.
+- **[touch-count](./touch-count/SKILL.md)** — Count the human touches each merged pull request needed, then read the worst one to find what they were about.
