@@ -18,5 +18,6 @@ If you want to keep up with my opinions you can join others:
 - **[teach-the-mechanism](skills/development/teach-the-mechanism/SKILL.md)** — Explain the user-visible flow and map it to the mechanism underneath before writing code on an unfamiliar standard, protocol, or architecture.
 - **[align-user-journey](skills/development/align-user-journey/SKILL.md)** — State the user-experience a feature produces and get sign-off on the journey before writing any code.
 - **[slop-audit](skills/development/slop-audit/SKILL.md)** — Audit a codebase for where agents write slop, and name the strongest check to stop each one.
+- **[touch-count](skills/development/touch-count/SKILL.md)** — Count the human touches each merged pull request needed, then read the worst one to find what they were about.
 - **[create-skill](skills/meta/create-skill/SKILL.md)** — Create new skills that actually trigger and actually change Claude's behaviour, using two named tests to catch the common failure modes.
 - **[audit-skill](skills/meta/audit-skill/SKILL.md)** — Score an existing SKILL.md line-by-line with the would-have-anyway and trigger tests, and report the kill count.
